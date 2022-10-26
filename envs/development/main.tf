@@ -24,15 +24,40 @@
 #}
 
 locals {
+  org_id          = data.terraform_remote_state.bootstrap.outputs.common_config.org_id
+  parent_folder   = data.terraform_remote_state.bootstrap.outputs.common_config.parent_folder
+  parent          = data.terraform_remote_state.bootstrap.outputs.common_config.parent_id
 
-  parent  = terraform_remote_state.org.outputs.common_folder_name
+}
 
+data "terraform_remote_state" "bootstrap" {
+  backend = "gcs"
+
+  config = {
+    bucket = var.remote_state_bucket
+    prefix = "terraform/bootstrap/state"
+  }
+}
+
+data "terraform_remote_state" "org" {
+  backend = "gcs"
+
+  config = {
+    bucket = var.remote_state_bucket
+    prefix = "terraform/org/state"
+  }
 }
 /******************************************
   Development folder
  *****************************************/
 
-resource "google_folder" "development" {
-  display_name = "${local.folder_prefix}-development"
-  parent       = module.env.env_folder
+resource "google_folder" "env" {
+  display_name = "${local.folder_prefix}-${var.env}"
+  parent       = local.parent
+}
+
+resource "time_sleep" "wait_30_seconds" {
+  depends_on = [google_folder.env]
+
+  destroy_duration = "30s"
 }
