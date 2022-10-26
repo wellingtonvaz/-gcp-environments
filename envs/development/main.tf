@@ -25,7 +25,7 @@
 
 locals {
 
-  parent                                        = data.terraform_remote_state.org.outputs.common_folder_name
+  parent                                        = terraform_remote_state.org.outputs.common_folder_name
 
 }
 /******************************************
