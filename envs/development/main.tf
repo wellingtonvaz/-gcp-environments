@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-module "env" {
-  source = "../../modules/env_baseline"
-
-  env                        = "development"
-  environment_code           = "d"
-  monitoring_workspace_users = var.monitoring_workspace_users
-  remote_state_bucket        = var.remote_state_bucket
-}
+#module "env" {
+#  source = "../../modules/env_baseline"
+#
+#  env                        = "development"
+#  environment_code           = "d"
+#  monitoring_workspace_users = var.monitoring_workspace_users
+#  remote_state_bucket        = var.remote_state_bucket
+#}
