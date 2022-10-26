@@ -27,5 +27,5 @@ variable "remote_state_bucket" {
 variable "env" {
   description = "The environment to prepare (ex. development)"
   type        = string
-  default = ""
+  default     = "development"
 }
