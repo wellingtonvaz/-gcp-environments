@@ -23,8 +23,7 @@
 #  remote_state_bucket        = var.remote_state_bucket
 #}
 
-
-ocals {
+locals {
   org_id          = data.terraform_remote_state.bootstrap.outputs.common_config.org_id
   parent_folder   = data.terraform_remote_state.bootstrap.outputs.common_config.parent_folder
   parent          = data.terraform_remote_state.bootstrap.outputs.common_config.parent_id
@@ -44,11 +43,11 @@ data "terraform_remote_state" "bootstrap" {
   }
 }
 
-data "terraform_remote_state" "org" {
+data "terraform_remote_state" "bootstrap" {
   backend = "gcs"
 
   config = {
     bucket = var.remote_state_bucket
-    prefix = "terraform/org/state"
+    prefix = "terraform/bootstrap/state"
   }
 }

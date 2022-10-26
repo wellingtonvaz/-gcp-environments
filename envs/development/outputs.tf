@@ -13,34 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#
+
 #output "env_folder" {
 #  description = "Environment folder created under parent."
 #  value       = module.env.env_folder
 #}
-#
+
 #output "monitoring_project_id" {
 #  description = "Project for monitoring infra."
 #  value       = module.env.monitoring_project_id
 #}
-#
+
 #output "base_shared_vpc_project_id" {
 #  description = "Project for base shared VPC."
 #  value       = module.env.base_shared_vpc_project_id
 #}
-#
+
 #output "restricted_shared_vpc_project_id" {
 #  description = "Project for restricted shared VPC."
 #  value       = module.env.restricted_shared_vpc_project_id
 #}
-#
+
 #output "restricted_shared_vpc_project_number" {
 #  description = "Project number for restricted shared VPC."
 #  value       = module.env.restricted_shared_vpc_project_number
 #}
-#
+
 #output "env_secrets_project_id" {
 #  description = "Project for environment related secrets."
 #  value       = module.env.env_secrets_project_id
 #}
-#
+
