@@ -22,3 +22,17 @@
 #  monitoring_workspace_users = var.monitoring_workspace_users
 #  remote_state_bucket        = var.remote_state_bucket
 #}
+
+locals {
+
+  parent                                        = data.terraform_remote_state.org.outputs.common_folder_name
+
+}
+/******************************************
+  Development folder
+ *****************************************/
+
+resource "google_folder" "common" {
+  display_name = "${local.folder_prefix}-development"
+  parent       = local.parent
+}
