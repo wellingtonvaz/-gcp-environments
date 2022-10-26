@@ -31,8 +31,6 @@ locals {
   default_region  = data.terraform_remote_state.bootstrap.outputs.common_config.default_region
   project_prefix  = data.terraform_remote_state.bootstrap.outputs.common_config.project_prefix
   folder_prefix   = data.terraform_remote_state.bootstrap.outputs.common_config.folder_prefix
-  tags            = data.terraform_remote_state.org.outputs.tags
-  env             = "development"
 }
 
 data "terraform_remote_state" "bootstrap" {
@@ -44,25 +42,11 @@ data "terraform_remote_state" "bootstrap" {
   }
 }
 
-data "terraform_remote_state" "org" {
-  backend = "gcs"
-
-  config = {
-    bucket = var.remote_state_bucket
-    prefix = "terraform/org/state"
-  }
-}
-/******************************************
-  Development folder
- *****************************************/
-
-resource "google_folder" "env" {
-  display_name = "${local.folder_prefix}-${var.env}"
-  parent       = local.parent
-}
-
-resource "time_sleep" "wait_30_seconds" {
-  depends_on = [google_folder.env]
-
-  destroy_duration = "30s"
-}
+#data "terraform_remote_state" "bootstrap" {
+#  backend = "gcs"
+#
+#  config = {
+#    bucket = var.remote_state_bucket
+#    prefix = "terraform/bootstrap/state"
+#  }
+#}
