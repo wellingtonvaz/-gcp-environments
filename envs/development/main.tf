@@ -43,11 +43,11 @@ data "terraform_remote_state" "bootstrap" {
   }
 }
 
-data "terraform_remote_state" "bootstrap" {
-  backend = "gcs"
-
-  config = {
-    bucket = var.remote_state_bucket
-    prefix = "terraform/bootstrap/state"
-  }
-}
+#data "terraform_remote_state" "bootstrap" {
+#  backend = "gcs"
+#
+#  config = {
+#    bucket = var.remote_state_bucket
+#    prefix = "terraform/bootstrap/state"
+#  }
+#}
