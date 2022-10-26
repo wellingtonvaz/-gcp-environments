@@ -32,6 +32,7 @@ locals {
   project_prefix  = data.terraform_remote_state.bootstrap.outputs.common_config.project_prefix
   folder_prefix   = data.terraform_remote_state.bootstrap.outputs.common_config.folder_prefix
   tags            = data.terraform_remote_state.org.outputs.tags
+  env             = "development"
 }
 
 data "terraform_remote_state" "bootstrap" {
