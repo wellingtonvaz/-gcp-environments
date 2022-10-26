@@ -25,14 +25,14 @@
 
 locals {
 
-  parent                                        = terraform_remote_state.org.outputs.common_folder_name
+  parent  = terraform_remote_state.org.outputs.common_folder_name
 
 }
 /******************************************
   Development folder
  *****************************************/
 
-resource "google_folder" "common" {
+resource "google_folder" "development" {
   display_name = "${local.folder_prefix}-development"
-  parent       = local.parent
+  parent       = module.env.env_folder
 }
